@@ -1,0 +1,1 @@
+﻿Small project to learn C# and ASP .NET Core
