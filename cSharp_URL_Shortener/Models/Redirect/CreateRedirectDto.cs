@@ -2,10 +2,12 @@
 {
     public class CreateRedirectDto
     {
+        // The result, shortened link
         public string ShortenLink { get; set; }
 
+        // The link that user want to make it short
         public string URL { get; set; }
-
+        
         public CreateRedirectDto()
         {
         }

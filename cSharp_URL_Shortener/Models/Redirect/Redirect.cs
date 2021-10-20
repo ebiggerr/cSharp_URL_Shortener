@@ -10,6 +10,8 @@ namespace cSharp_URL_Shortener.Models.Redirect
 
         public string URL { get; set; }
 
+        //public Statistics Statistics { get; set; }
+
         public Redirect()
         {
         }

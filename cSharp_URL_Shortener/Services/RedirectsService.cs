@@ -4,25 +4,23 @@ using cSharp_URL_Shortener.Repository;
 
 namespace cSharp_URL_Shortener.Services
 {
-    public class RedirectsService
+    public class RedirectsService: IRedirectsService
     {
-        private readonly RedirectsRepo _redirectsRepo;
+        private readonly IRedirectsRepo _iRedirectsRepo;
 
-        public RedirectsService(RedirectsRepo redirectsRepo)
+        public RedirectsService(IRedirectsRepo redirectsRepo)
         {
-            _redirectsRepo = redirectsRepo;
+            _iRedirectsRepo = redirectsRepo;
         }
 
         public async Task<Redirect> GetByShortenLink(string shortenLink)
         {
-            return await _redirectsRepo.GetByShortenLink(shortenLink);
+            return await _iRedirectsRepo.GetByShortenLink(shortenLink);
         }
 
-        public async Task<Redirect> Create(CreateRedirectDto input)
+        public async Task<Redirect> Create(Redirect input)
         {
-            var redirect = Redirect.Create(input.ShortenLink, input.URL);
-            
-            return await _redirectsRepo.Save(redirect);
+            return await _iRedirectsRepo.Save(input);
         }
     }
 }

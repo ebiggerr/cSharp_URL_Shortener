@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using cSharp_URL_Shortener.EF;
 using cSharp_URL_Shortener.Models.Redirect;
 using Microsoft.EntityFrameworkCore;
 
 namespace cSharp_URL_Shortener.Repository
 {
-    public class RedirectsRepo
+    public class RedirectsRepo: IRedirectsRepo
     {
         private readonly cSharp_URL_ShortenerDbContext _context;
 

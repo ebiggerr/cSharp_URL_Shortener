@@ -1,4 +1,6 @@
 using cSharp_URL_Shortener.EF;
+using cSharp_URL_Shortener.Repository;
+using cSharp_URL_Shortener.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,14 @@ namespace cSharp_URL_Shortener
             
             services.AddDbContext<cSharp_URL_ShortenerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("URLShortenerDemoDbConnection")));
+
+            services.AddScoped<IRedirectsService, RedirectsService>();
+            services.AddTransient<IRedirectsRepo, RedirectsRepo>();
+            services.AddTransient<IcSharp_URL_ShortenerDbContext,cSharp_URL_ShortenerDbContext>();
+
+            services.AddScoped<IStatisticsService, StatisticsService>();
+            services.AddTransient<IStatisticsRepo, StatisticsRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +61,7 @@ namespace cSharp_URL_Shortener
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Create}/{action=Index}");
             });
         }
     }
