@@ -1,0 +1,42 @@
+﻿@using System.Formats.Asn1
+@model cSharp_URL_Shortener.Models.Redirect.CreateRedirectDto
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Create Your Shorten Link Now~!</h1>
+</div>
+
+<div class="container h-100">
+    <div class="row align-items-center h-100">
+        <div class="col-6 mx-auto">
+            <div class="jumbotron">
+                @using (Html.BeginForm("Create", "Create", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ShortenLink)
+                        @Html.TextBoxFor(m => m.ShortenLink, new { @class = "form-control", @placeholder = "Enter Your Link Here" })
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <label for="preferredShortLink">Your Preferred Short Link</label>
+                        <input type="text" class="form-control" id="preferredShortLink" placeholder="For example, 'best-coffee'">
+                        -->
+                        @Html.LabelFor(m => m.URL)
+                        @Html.TextBoxFor(m => m.URL, new { @class = "form-control", @placeholder="For example, 'best-coffee'" })
+                    </div>
+                    
+                    //<div  style="@(Model.URL == "" ? "display:block" : "display:none")">
+                      //  @Html.DisplayFor(dto => dto.URL)
+                    //</div>
+                    <div class="form-group rounded-right text-right">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Generate the link"/>
+                    </div>
+                    
+                }
+            </div>
+        </div>
+    </div>
+</div>
