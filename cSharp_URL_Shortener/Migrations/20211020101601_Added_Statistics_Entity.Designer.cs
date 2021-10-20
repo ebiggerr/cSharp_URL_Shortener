@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using cSharp_URL_Shortener.EF;
 
 namespace cSharp_URL_Shortener.Migrations
 {
     [DbContext(typeof(cSharp_URL_ShortenerDbContext))]
-    partial class cSharp_URL_ShortenerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211020101601_Added_Statistics_Entity")]
+    partial class Added_Statistics_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
