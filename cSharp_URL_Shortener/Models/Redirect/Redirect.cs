@@ -18,15 +18,30 @@ namespace cSharp_URL_Shortener.Models.Redirect
 
         protected Redirect(string shortenLink, string url)
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
             CreationTime = DateTime.Now;
             ShortenLink = shortenLink;
-            URL = url;
+            URL = CheckAndValidate(url);
         }
 
         public static Redirect Create(string shortenLink, string url)
         {
             return new Redirect(shortenLink, url);
+        }
+
+        public static string CheckAndValidate(string urlInput)
+        {
+            if (urlInput.StartsWith("www"))
+            {
+                return "https://" + urlInput;
+            }
+
+            /*if (urlInput.StartsWith("https://"))
+            {
+                return urlInput;
+            }*/
+
+            return urlInput;
         }
 
     }
