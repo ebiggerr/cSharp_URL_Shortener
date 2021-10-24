@@ -6,11 +6,10 @@ namespace cSharp_URL_Shortener.Controllers
     public class ResultController: Controller
     {
         [Route("/Result")]
-        public IActionResult Index()
-        {
-            string input = "/Home/Create";
+        public IActionResult Index(string ResultString)
+        { 
             
-            return View("Result", new Result(input));
+            return View("Result", new Result(ResultString));
         }
     }
 }

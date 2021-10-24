@@ -26,10 +26,11 @@ namespace cSharp_URL_Shortener
             
             services.AddDbContext<cSharp_URL_ShortenerDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("URLShortenerDemoDbConnection")));
+            
+            services.AddScoped<IcSharp_URL_ShortenerDbContext,cSharp_URL_ShortenerDbContext>();
 
             services.AddScoped<IRedirectsService, RedirectsService>();
-            services.AddScoped<IRedirectsRepo, RedirectsRepo>();
-            services.AddScoped<IcSharp_URL_ShortenerDbContext,cSharp_URL_ShortenerDbContext>();
+            services.AddTransient<IRedirectsRepo, RedirectsRepo>();
 
             services.AddScoped<IStatisticsService, StatisticsService>();
             services.AddTransient<IStatisticsRepo, StatisticsRepo>();
