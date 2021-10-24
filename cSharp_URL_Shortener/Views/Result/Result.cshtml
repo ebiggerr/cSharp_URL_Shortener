@@ -1,0 +1,19 @@
+﻿@model cSharp_URL_Shortener.Models.Result
+@{
+    ViewData["Title"] = "Result";
+}
+
+@*
+<div class="text-center">
+    <h1 class="display-4">Your Shortened Link</h1>
+</div>*@
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Your Shortened Link</h1>
+        <p class="lead"> @Model.ResultString </p>
+        <p class="lead">
+            <a href="@Model.ResultString" class="btn btn-lg btn-secondary">CLick to try</a>
+        </p>
+    </main>
+</div>
