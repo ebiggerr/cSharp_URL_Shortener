@@ -28,8 +28,8 @@ namespace cSharp_URL_Shortener
                 options.UseSqlServer(Configuration.GetConnectionString("URLShortenerDemoDbConnection")));
 
             services.AddScoped<IRedirectsService, RedirectsService>();
-            services.AddTransient<IRedirectsRepo, RedirectsRepo>();
-            services.AddTransient<IcSharp_URL_ShortenerDbContext,cSharp_URL_ShortenerDbContext>();
+            services.AddScoped<IRedirectsRepo, RedirectsRepo>();
+            services.AddScoped<IcSharp_URL_ShortenerDbContext,cSharp_URL_ShortenerDbContext>();
 
             services.AddScoped<IStatisticsService, StatisticsService>();
             services.AddTransient<IStatisticsRepo, StatisticsRepo>();

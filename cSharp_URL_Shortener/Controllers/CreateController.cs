@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using cSharp_URL_Shortener.Models;
 using cSharp_URL_Shortener.Models.Redirect;
 using cSharp_URL_Shortener.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +10,7 @@ namespace cSharp_URL_Shortener.Controllers
 {
     public class CreateController: Controller
     {
+        private static string domain = "https://localhost:5001/";
         private static readonly List<int> Numbers = new List<int>() {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};  
         private static readonly List<char> Characters = new List<char>()   
         {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',   
@@ -29,7 +32,7 @@ namespace cSharp_URL_Shortener.Controllers
         }
 
         //User creating shortened link
-        public IActionResult Create(CreateRedirectDto input)
+        public async Task<IActionResult> Create(CreateRedirectDto input)
         {
             // initialize
             var redirect = Models.Redirect.Redirect.Create("",
@@ -45,10 +48,10 @@ namespace cSharp_URL_Shortener.Controllers
                 redirect.ShortenLink = input.ShortenLink;
             }
 
-            _redirectsService.Create(redirect);
+            await _redirectsService.Create(redirect);
 
-            //TODO revise needed, it should show the result to user
-            return View("Error");
+            //TODO revise needed, "ERR_TOO_MANY_REDIRECTS" error
+            return RedirectToAction("Index","Result", new Result(domain + redirect.ShortenLink ));
         }
 
         public static string GenerateShort()
