@@ -26,7 +26,7 @@ namespace cSharp_URL_Shortener.Controllers
         public IActionResult Index(string shortenLink)
         {
             string originalUrl = null;
-            
+
             if (shortenLink == null)
             {
                 return View("Create");
@@ -34,10 +34,18 @@ namespace cSharp_URL_Shortener.Controllers
 
             var redirect= _IRedirectsService.GetByShortenLink(shortenLink).Result;
 
-            originalUrl = redirect.URL;
-            
-            // add stats
-            _statisticsService.Add(redirect.Id);
+            if (redirect == null)
+            {
+                originalUrl = null;
+                return View("Error");
+            }
+            else
+            {
+                originalUrl = redirect.URL;
+                originalUrl = Models.Redirect.Redirect.CheckAndValidate(originalUrl);
+                // add stats
+                _statisticsService.Add(redirect.Id);
+            }
 
             if (originalUrl == null)
             {

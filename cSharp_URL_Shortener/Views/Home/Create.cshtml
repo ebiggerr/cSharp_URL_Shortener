@@ -17,7 +17,7 @@
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         @Html.LabelFor(m => m.ShortenLink)
-                        @Html.TextBoxFor(m => m.ShortenLink, new { @class = "form-control", @placeholder = "Enter Your Link Here" })
+                        @Html.TextBoxFor(m => m.ShortenLink, new { @class = "form-control", @placeholder = "For example, 'best-coffee'" })
                     </div>
 
                     <div class="form-group">
@@ -25,7 +25,7 @@
                         <input type="text" class="form-control" id="preferredShortLink" placeholder="For example, 'best-coffee'">
                         -->
                         @Html.LabelFor(m => m.URL)
-                        @Html.TextBoxFor(m => m.URL, new { @class = "form-control", @placeholder="For example, 'best-coffee'" })
+                        @Html.TextBoxFor(m => m.URL, new { @class = "form-control", @placeholder="Enter Your Link Here" })
                     </div>
                     
                     //<div  style="@(Model.URL == "" ? "display:block" : "display:none")">

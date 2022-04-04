@@ -21,7 +21,7 @@ namespace cSharp_URL_Shortener.Repository
 
         public async Task<Redirect> Save(Redirect entity)
         {
-            _context.Add(entity);
+            await _context.AddAsync(entity);
 
             await _context.SaveChangesAsync();
 
